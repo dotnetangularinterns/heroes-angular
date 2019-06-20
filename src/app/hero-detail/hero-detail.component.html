@@ -2,11 +2,28 @@
 
   <h2>{{hero.name | uppercase}} Details</h2>
   <div><span>id: </span>{{hero.id}}</div>
+  <div><span>Power: </span>{{hero.power}}</div>
+  <div>
+    <img [src]="hero.pic"
+          [title]="hero.name"
+          [style.width.px]='imageWidth'
+          [style.margin.px]='imageMargin'> 
+  </div>
   <div>
     <label>name:
       <input [(ngModel)]="hero.name" placeholder="name"/>
     </label>
   </div>
+  <div>
+      <label>pic url:
+        <input [(ngModel)]="hero.pic" placeholder="pic"/>
+      </label>
+    </div>
+    <div>
+        <label>power:
+          <input [(ngModel)]="hero.power" placeholder="power"/>
+        </label>
+      </div>
   <button (click)="save()">save</button>
   <button (click)="goBack()">go back</button>
 </div>
