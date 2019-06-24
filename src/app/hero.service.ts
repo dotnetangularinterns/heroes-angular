@@ -15,12 +15,12 @@ const httpOptions = {
 @Injectable({ providedIn: 'root' })
 export class HeroService {
 
-  private heroesUrl = 'https://localhost:5001/api/heros';
+  private heroesUrl = 'https://localhost:5001/api/heroes';
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
 
   getHeroes(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(this.heroesUrl).pipe(tap(_ => this.log('etched heroes')), 
+    return this.http.get<Hero[]>(this.heroesUrl).pipe(tap(_ => this.log('fetched heroes')), 
     catchError(this.handleError<Hero[]>('getHeroes', [])));
   }
 
@@ -57,7 +57,7 @@ export class HeroService {
     if (!term.trim()) {
       return of([]);
     }
-    return this.http.get<Hero[]>(`${this.heroesUrl}/v/?name=${term}`).pipe(tap(_ => this.log(`found heroes matching "${term}"`)), 
+    return this.http.get<Hero[]>(`${this.heroesUrl}/h/?name=${term}`).pipe(tap(_ => this.log(`found heroes matching "${term}"`)), 
     catchError(this.handleError<Hero[]>('searchHeroes', [])))
   }
 
