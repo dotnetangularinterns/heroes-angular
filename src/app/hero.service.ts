@@ -20,7 +20,7 @@ export class HeroService {
   constructor(private http: HttpClient, private messageService: MessageService) { }
 
   getHeroes(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(this.heroesUrl).pipe(tap(_ => this.log('getched heroes')), 
+    return this.http.get<Hero[]>(this.heroesUrl).pipe(tap(_ => this.log('etched heroes')), 
     catchError(this.handleError<Hero[]>('getHeroes', [])));
   }
 
@@ -30,29 +30,34 @@ export class HeroService {
     catchError(this.handleError<Hero>(`getHero id=${id}`))));
   }
 
-  updateHero (hero : Hero) : Observable<any> {
+  updateHero (hero : Hero): Observable<any> {
     return this.http.put(this.heroesUrl, hero, httpOptions).pipe(tap(_ => this.log(`updated hero id=${hero.id}`)), 
     catchError(this.handleError<any>('updateHero')));
   }
 
-  addHero (hero: Hero) : Observable<Hero> {
+  addHero (hero: Hero): Observable<Hero> {
     return this.http.post<Hero>(this.heroesUrl, hero, httpOptions).pipe(tap((newHero: Hero) => this.log(`added hero with id=${newHero.id}`)), 
     catchError(this.handleError<Hero>('addHero')));
   }
   
-  deleteHero (hero: Hero | number) : Observable<Hero> {
-    const id = typeof hero === 'number' ? hero : hero.id;
+  deleteHero (hero: Hero | number): Observable<Hero> {
+    let id: number;
+    if (typeof hero === 'number') {
+      id = hero;
+    } else {
+      id = hero.id;
+    }
     const url = `${this.heroesUrl}/${id}`;
 
     return this.http.delete<Hero>(url, httpOptions).pipe(tap(_ => this.log(`deleted hero id=${id}`)), 
     catchError(this.handleError<Hero>('deleteHero')));
   }
 
-  searchHeroes(term: string) : Observable<Hero[]> {
+  searchHeroes(term: string): Observable<Hero[]> {
     if (!term.trim()) {
       return of([]);
     }
-    return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(tap(_ => this.log(`found heroes matching "${term}"`)), 
+    return this.http.get<Hero[]>(`${this.heroesUrl}/v/?name=${term}`).pipe(tap(_ => this.log(`found heroes matching "${term}"`)), 
     catchError(this.handleError<Hero[]>('searchHeroes', [])))
   }
 
