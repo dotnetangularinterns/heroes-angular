@@ -81,6 +81,6 @@ describe('HeroesComponent', () => {
       let remains = component.heroes.some(hero => hero.Id == 2);
 
       expect(remains).toBe(false);
-    })
-  })
+    });
+  });
 });
