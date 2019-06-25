@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
@@ -9,12 +9,14 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { MessagesComponent } from './messages/messages.component';
 
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 //import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 //import { InMemoryDataService } from './in-memory-data.service';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
-import { GlobalErrorHandler } from './GlobalErrorHandler';
+import { HttpRequestInterceptor } from './HttpRequestInterceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpErrorHandler } from './HttpErrorHandler';
 
 @NgModule({
   imports: [
@@ -22,7 +24,7 @@ import { GlobalErrorHandler } from './GlobalErrorHandler';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-
+    BrowserAnimationsModule
     //HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false })
   ],
   declarations: [
@@ -33,9 +35,10 @@ import { GlobalErrorHandler } from './GlobalErrorHandler';
     MessagesComponent,
     HeroSearchComponent
   ],
+  bootstrap: [ AppComponent ],
   providers: [
-    { provide: ErrorHandler, useClass: GlobalErrorHandler }
-  ],
-  bootstrap: [ AppComponent ]
+    HttpErrorHandler,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true} 
+  ]
 })
 export class AppModule { }
