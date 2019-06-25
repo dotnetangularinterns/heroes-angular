@@ -11,8 +11,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-//import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-//import { InMemoryDataService } from './in-memory-data.service';
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryDataService } from './in-memory-data.service';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { HttpRequestInterceptor } from './HttpRequestInterceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,7 +25,7 @@ import { HttpErrorHandler } from './HttpErrorHandler';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule
-    //HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false })
+    // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false })
   ],
   declarations: [
     AppComponent,
@@ -38,7 +38,7 @@ import { HttpErrorHandler } from './HttpErrorHandler';
   bootstrap: [ AppComponent ],
   providers: [
     HttpErrorHandler,
-    { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true} 
+    { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true}
   ]
 })
 export class AppModule { }

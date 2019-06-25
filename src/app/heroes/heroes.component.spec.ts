@@ -12,18 +12,22 @@ describe('HeroesComponent', () => {
     heroList = [
       {
         id: 0,
-        name: "Pasha",
-        pic: "https://spng.pngfly.com/20190305/zga/kisspng-t-shirt-dabbing-unicorn-mens-tank-top-dabbing-un-unicorn-dab-sticker-by-ona-maria-acuna-escano-5c7ee36e662318.0101235515518196304184.jpg",
+        name: 'Pasha',
+        pic: `https://spng.pngfly.com/20190305/zga/kisspng-t-shirt-dabbing-unicorn-mens-tank-top-dabbing-un-
+        unicorn-dab-sticker-by-ona-maria-acuna-escano-5c7ee36e662318.0101235515518196304184.jpg`,
         power: 99.99
-      }, {
+      },
+      {
         id: 1,
-        name: "Chris",
-        pic: "https://images.homedepot-static.com/productImages/c0e81cb5-551b-4263-afe3-c727fceaa2af/svn/everbilt-hex-nuts-804076-64_1000.jpg",
+        name: 'Chris',
+        pic: `https://images.homedepot-static.com/productImages/c0e81cb5-551b-4263-afe3-c727fceaa2af
+        /svn/everbilt-hex-nuts-804076-64_1000.jpg`,
         power: 0.001
-      }, {
+      },
+      {
         id: 2,
-        name: "Marcus",
-        pic: "https://i.ytimg.com/vi/sq0iNAqrT9c/maxresdefault.jpg",
+        name: 'Marcus',
+        pic: 'https://i.ytimg.com/vi/sq0iNAqrT9c/maxresdefault.jpg',
         power: -69.0
       }
     ];
@@ -48,9 +52,9 @@ describe('HeroesComponent', () => {
   describe('getHeroes', () => {
     it('should get hereos from the service', () => {
       mockHeroService.getHeroes.and.returnValue(of(heroList));
-  
+
       component.getHeroes();
-  
+
       expect(component.heroes.length).toBe(3);
     });
   });
@@ -63,8 +67,8 @@ describe('HeroesComponent', () => {
 
       component.add('Ashazi', '', 2);
 
-      let added = component.heroes.some(hero => hero.Name == 'Ashazi');
-      
+      const added = component.heroes.some(hero => hero.Name === 'Ashazi');
+
       expect(added).toBe(true);
       expect(component.heroes.slice(-1)[0].Name).toBe('Ashazi');
     });
@@ -78,7 +82,7 @@ describe('HeroesComponent', () => {
 
       component.delete(heroList[2]);
 
-      let remains = component.heroes.some(hero => hero.Id == 2);
+      const remains = component.heroes.some(hero => hero.Id === 2);
 
       expect(remains).toBe(false);
     });

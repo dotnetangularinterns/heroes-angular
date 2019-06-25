@@ -8,12 +8,14 @@ import { of } from 'rxjs';
 import { Location } from '@angular/common';
 
 describe('HeroDetailComponent', () => {
-  let mockActivatedRoute, mockHeroService, mockLocation;
+  let mockActivatedRoute;
+  let mockHeroService;
+  let mockLocation;
   let fixture: ComponentFixture<HeroDetailComponent>;
 
   beforeEach(() => {
     mockActivatedRoute = {
-        snapshot: { paramMap: { get: () => { return '3' }}}
+        snapshot: { paramMap: { get: () => '3'}}
     };
     mockHeroService = jasmine.createSpyObj(['getHero', 'updateHero']);
     mockLocation = jasmine.createSpyObj(['back']);

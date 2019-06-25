@@ -1,10 +1,10 @@
-import { MessageService } from "./message.service";
+import { MessageService } from './message.service';
 
 describe('MessageService', () => {
     let service: MessageService;
 
     beforeEach(() => {
-        service = new MessageService;
+        service = new MessageService();
     });
 
     it('should have no messages at start', () => {
@@ -19,6 +19,6 @@ describe('MessageService', () => {
     it('should remove all messages when clear is called', () => {
         service.clear();
         expect(service.messages.length).toBe(0);
-    })
+    });
 
-})
+});
