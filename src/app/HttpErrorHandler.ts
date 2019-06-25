@@ -1,11 +1,13 @@
+import { Router } from '@angular/router';
+
 export class HttpErrorHandler {
 
-    constructor() {}
+    constructor(private router: Router) {}
 
     public handleError(err: any) {
-        let message = err.message;
-        message = message.split(' ').slice(5).toString().replace(/,/g, ' ');
-        alert('ooopsie doopsie\n' + message);
-        console.log(err.message, '');
+        this.router.navigateByUrl('error/404');
+        // let message = err.message;
+        // message = message.split(' ').slice(5).toString().replace(/,/g, ' ');
+        // alert('ooopsie doopsie\n' + message);
     }
 }
