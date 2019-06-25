@@ -18,6 +18,7 @@ import { HttpRequestInterceptor } from './HttpRequestInterceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpErrorHandler } from './HttpErrorHandler';
 import { Error404Component } from './errors/error-404.component';
+import { Error400Component } from './errors/error-400.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { Error404Component } from './errors/error-404.component';
     HeroDetailComponent,
     MessagesComponent,
     HeroSearchComponent,
-    Error404Component
+    Error404Component,
+    Error400Component
   ],
   bootstrap: [ AppComponent ],
   providers: [
