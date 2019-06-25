@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 //import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 //import { InMemoryDataService } from './in-memory-data.service';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
+import { GlobalErrorHandler } from './GlobalErrorHandler';
 
 @NgModule({
   imports: [
@@ -31,6 +32,9 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
     HeroDetailComponent,
     MessagesComponent,
     HeroSearchComponent
+  ],
+  providers: [
+    { provide: ErrorHandler, useClass: GlobalErrorHandler }
   ],
   bootstrap: [ AppComponent ]
 })

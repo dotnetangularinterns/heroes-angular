@@ -13,8 +13,8 @@ export class HeroDetailComponent implements OnInit {
   @Input() hero: Hero;
   constructor(private route: ActivatedRoute, private heroService: HeroService, private location: Location) { }
 
-  imageWidth: number = 100
-  imageMargin: number = 5
+  imageWidth: number = 100;
+  imageMargin: number = 5;
 
   ngOnInit() {
     this.getHero();

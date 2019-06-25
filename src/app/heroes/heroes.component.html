@@ -10,17 +10,20 @@
 
 <div>
   <label> Hero Name:
-    <input #heroName />
+    <br/>
+    <input #name />
   </label>
   <br/>
   <label> Hero Pic:
-    <input #heroPic />
+    <br/>
+    <input #pic />
   </label>
   <br/>
   <label> Hero Power:
-    <input #heroPower />
+    <br/>
+    <input #power />
   </label>
   <br/>
   <br/>
-  <button style="width:200px" (click)="add(heroName.value, heroPic.value, heroPower.value); heroName.value=''; heroPic.value=''; heroPower.value=''">add</button>
+  <button style="width:200px" (click)="add(name.value, pic.value, power.value); heroName.value=''; heroPic.value=''; heroPower.value=''">add</button>
 </div>
