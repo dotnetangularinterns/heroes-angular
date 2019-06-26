@@ -1,6 +1,6 @@
 <h2>My Heroes</h2>
 <ul class="heroes">
-  <li *ngFor="let hero of heroes">
+  <li *ngFor="let hero of heroes" id="heroes">
     <a routerLink="/detail/{{hero.id}}">
       <span class="badge">{{hero.id}}</span> {{hero.name}}
     </a>
@@ -11,17 +11,17 @@
 <div>
   <label> Hero Name:
     <br/>
-    <input #name />
+    <input name="hero_name" #name />
   </label>
   <br/>
   <label> Hero Pic:
     <br/>
-    <input #pic />
+    <input name="hero_pic" #pic />
   </label>
   <br/>
   <label> Hero Power:
     <br/>
-    <input #power />
+    <input name="hero_power" #power />
   </label>
   <br/>
   <br/>

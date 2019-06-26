@@ -1,23 +1,44 @@
-import { AppPage } from './app.po';
-import { browser, logging } from 'protractor';
+import { browser, element, by } from 'protractor';
 
-describe('workspace-project App', () => {
-  let page: AppPage;
+describe('Heroes App', () => {
+
+  const name = element(by.name('hero_name'));
+  const pic = element(by.name('hero_pic'));
+  const power = element(by.name('hero_power'));
+  const addButton = element(by.buttonText('add'));
+  const heroes = element.all(by.css('.heroes li'));
 
   beforeEach(() => {
-    page = new AppPage();
+    browser.get('http://localhost:4200/heroes/');
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to angular-tour-of-heroes!');
+  it('should have a title', () => {
+    expect(browser.getTitle()).toEqual('AngularTourOfHeroes');
   });
 
-  afterEach(async () => {
-    // Assert that there are no errors emitted from the browser
-    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-    expect(logs).not.toContain(jasmine.objectContaining({
-      level: logging.Level.SEVERE,
-    } as logging.Entry));
+  it('should enter data into fields', () => {
+    name.sendKeys('Zed');
+    pic.sendKeys('someurl.jpg');
+    power.sendKeys(6);
+
+    expect(name.getAttribute('value')).toEqual('Zed');
+    expect(pic.getAttribute('value')).toEqual('someurl.jpg');
+    expect(power.getAttribute('value')).toEqual('6');
+  });
+
+  it('should render all elements on initialization', () => {
+    expect(heroes.count()).toEqual(1);
+  });
+
+  it('should add a new hero to heroes list', () => {
+    name.sendKeys('Zed');
+    pic.sendKeys('someurl.jpg');
+    power.sendKeys(6);
+
+    addButton.click();
+
+    const last = heroes.last();
+
+    expect(last.getText()).toContain('Zed');
   });
 });
