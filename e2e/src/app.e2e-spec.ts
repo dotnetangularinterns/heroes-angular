@@ -41,4 +41,12 @@ describe('Heroes App', () => {
 
     expect(last.getText()).toContain('Zed');
   });
+
+  it('should delete hero from list', () => {
+    const last = heroes.last();
+
+    const deleteButton = last.element(by.buttonText('x'));
+
+    expect(heroes.count).toEqual(7);
+  });
 });
