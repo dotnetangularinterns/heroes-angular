@@ -6,7 +6,7 @@ describe('Heroes App', () => {
   const pic = element(by.name('hero_pic'));
   const power = element(by.name('hero_power'));
   const addButton = element(by.buttonText('add'));
-  const heroes = element.all(by.css('.heroes li'));
+  let heroes = element.all(by.css('.heroes li'));
 
   beforeEach(() => {
     browser.get('http://localhost:4200/heroes/');
@@ -40,5 +40,16 @@ describe('Heroes App', () => {
     const last = heroes.last();
 
     expect(last.getText()).toContain('Zed');
+  });
+
+  it('should delete hero from list', () => {
+    const deleteButtons = element.all(by.css('.heroes')).all(by.css('.delete'));
+    const lastButton = deleteButtons.last();
+
+    lastButton.click();
+
+    heroes = element.all(by.css('.heroes li'));
+
+    expect(heroes.count()).toEqual(1);
   });
 });

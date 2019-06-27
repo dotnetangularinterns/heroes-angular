@@ -12,7 +12,7 @@ describe('HeroService', () => {
 
     beforeEach(() => {
         mockMockMessageService = jasmine.createSpyObj(['add', 'clear']);
-        heroesUrl = 'https://localhost:5001/api/heros';
+        heroesUrl = 'https://localhost:5001/api/heroes';
         HEROES = [
             {
                 id: 0,
