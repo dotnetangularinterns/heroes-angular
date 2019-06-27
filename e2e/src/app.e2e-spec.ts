@@ -6,10 +6,11 @@ describe('Heroes App', () => {
   const pic = element(by.name('hero_pic'));
   const power = element(by.name('hero_power'));
   const addButton = element(by.buttonText('add'));
-  let heroes = element.all(by.css('.heroes li'));
+  let heroes;
 
   beforeEach(() => {
     browser.get('http://localhost:4200/heroes/');
+    heroes = element.all(by.css('.heroes li'));
   });
 
   it('should have a title', () => {
@@ -21,21 +22,24 @@ describe('Heroes App', () => {
     pic.sendKeys('someurl.jpg');
     power.sendKeys(6);
 
+    browser.sleep(1000);
+
     expect(name.getAttribute('value')).toEqual('Zed');
     expect(pic.getAttribute('value')).toEqual('someurl.jpg');
     expect(power.getAttribute('value')).toEqual('6');
   });
 
   it('should render all elements on initialization', () => {
-    expect(heroes.count()).toEqual(1);
+    expect(heroes.count()).toEqual(4);
   });
 
   it('should add a new hero to heroes list', () => {
     name.sendKeys('Zed');
     pic.sendKeys('someurl.jpg');
     power.sendKeys(6);
-
     addButton.click();
+
+    browser.sleep(1000);
 
     const last = heroes.last();
 
@@ -43,21 +47,17 @@ describe('Heroes App', () => {
   });
 
   it('should delete hero from list', () => {
-<<<<<<< HEAD
-    const deleteButtons = element.all(by.css('.heroes')).all(by.css('.delete'));
-    const lastButton = deleteButtons.last();
+    // const deleteButtons = element.all(by.css('.heroes')).all(by.css('.delete'));
+    const lastButton = heroes.last().element(by.css('.delete'));
+    const oldId = heroes.last().element(by.binding('hero.id'));
 
     lastButton.click();
 
-    heroes = element.all(by.css('.heroes li'));
+    browser.sleep(1000);
 
-    expect(heroes.count()).toEqual(1);
-=======
-    const last = heroes.last();
+    const lastId = heroes.last().element(by.css('hero.id'));
 
-    const deleteButton = last.element(by.buttonText('x'));
-
-    expect(heroes.count).toEqual(7);
->>>>>>> 56fdd9e74a0dcdededbef7058fb769c7f83c7e03
+    const matches = lastId === oldId;
+    expect(matches).toBeFalsy();
   });
 });
