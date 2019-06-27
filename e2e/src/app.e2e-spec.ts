@@ -17,6 +17,10 @@ describe('Heroes App', () => {
     expect(browser.getTitle()).toEqual('AngularTourOfHeroes');
   });
 
+  it('should render all elements on initialization', () => {
+    expect(heroes.count()).toEqual(4);
+  });
+
   it('should enter data into fields', () => {
     name.sendKeys('Zed');
     pic.sendKeys('someurl.jpg');
@@ -27,10 +31,6 @@ describe('Heroes App', () => {
     expect(name.getAttribute('value')).toEqual('Zed');
     expect(pic.getAttribute('value')).toEqual('someurl.jpg');
     expect(power.getAttribute('value')).toEqual('6');
-  });
-
-  it('should render all elements on initialization', () => {
-    expect(heroes.count()).toEqual(4);
   });
 
   it('should add a new hero to heroes list', () => {
