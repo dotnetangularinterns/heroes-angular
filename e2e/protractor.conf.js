@@ -29,5 +29,7 @@ exports.config = {
       project: require('path').join(__dirname, './tsconfig.json')
     });
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
+    let reporters = require('jasmine-reporters');
+    jasmine.getEnv().addReporter(new reporters.JUnitXmlReporter('outputxmldir', true, true));
   }
 };
