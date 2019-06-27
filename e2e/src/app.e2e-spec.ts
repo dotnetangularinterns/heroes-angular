@@ -43,6 +43,7 @@ describe('Heroes App', () => {
   });
 
   it('should delete hero from list', () => {
+<<<<<<< HEAD
     const deleteButtons = element.all(by.css('.heroes')).all(by.css('.delete'));
     const lastButton = deleteButtons.last();
 
@@ -51,5 +52,12 @@ describe('Heroes App', () => {
     heroes = element.all(by.css('.heroes li'));
 
     expect(heroes.count()).toEqual(1);
+=======
+    const last = heroes.last();
+
+    const deleteButton = last.element(by.buttonText('x'));
+
+    expect(heroes.count).toEqual(7);
+>>>>>>> 56fdd9e74a0dcdededbef7058fb769c7f83c7e03
   });
 });
